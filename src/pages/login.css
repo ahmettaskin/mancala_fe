@@ -1,0 +1,18 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.username {
+    margin: 20px;
+    width: 200px;
+}
+
+.password {
+    margin: 20px;
+    width: 200px;
+}

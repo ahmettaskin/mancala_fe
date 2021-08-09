@@ -7,7 +7,7 @@ function Game() {
 
   let config = {
     headers: {
-      'Authorization': 'Bearer ' + "validToken()"
+      'Authorization': 'Bearer ' + sessionStorage.getItem("token")
     }
   }
 
@@ -15,29 +15,37 @@ function Game() {
   const apiUrl = process.env.REACT_APP_MANCALA_API_URL
 
   useEffect(async () => {
-    let result = await axios.post(apiUrl + "/game", config)
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer xsasasdasd'
+    }
+
+    let result = await axios.post(apiUrl + "/game", {}, {
+      headers: {Authorization: "Bearer " + sessionStorage.getItem("token")}
+    })
     setData(result.data)
-    console.log(result)
+    sessionStorage.setItem("gameId", result.data.id)
   }, [])
 
   const makeMove = async (index) => {
-    let result = await axios.post(apiUrl + "/sow", {
-      ...config,
-      gameId: "gameId",
-      index: index,
-      playerEnm: data.playerTurn
+    let result = await axios.post(apiUrl + "/game/" + sessionStorage.getItem("gameId") + "/sow", {
+      pitIndex: index,
+      currentPlayer: data.nextPlayer
+    }, {
+      headers: {Authorization: "Bearer " + sessionStorage.getItem("token")}
     })
     setData(result.data)
-    console.log(result)
-
   }
 
   return (
     <>
       {
         data && <>
-          <Header playerTurn={data.playerTurn}/>
-          <Board board={data.board} onClick={(index) => makeMove(index)} playerA={data.player1} playerB={data.player2}/>
+          <Header playerTurn={data.nextPlayer}/>
+          <h1> Player A</h1>
+          <Board board={data.board} onClick={(index) => makeMove(index)} playerA={data.playerA} playerB={data.playerB}/>
+          <h1> Player B</h1>
+          <h1>Game Status: {data.gameStatus}</h1>
         </>
       }
     </>

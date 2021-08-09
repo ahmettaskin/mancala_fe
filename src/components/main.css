@@ -1,0 +1,32 @@
+.board{
+    background-color: saddlebrown;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 200px;
+}
+
+.playerAPits{
+    display:flex;
+    flex-direction: row-reverse;
+    width: 300px;
+    justify-content: space-around;
+    height: 50px;
+    cursor: pointer;
+    background-color: grey;
+    align-items: center;
+}
+
+.playerBPits{
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    height: 50px;
+    justify-content: space-around;
+    cursor: pointer;
+    background-color: green;
+    align-items: center;
+}

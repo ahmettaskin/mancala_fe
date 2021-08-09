@@ -1,11 +1,12 @@
 import Pit from "./Pit";
+import "./main.css";
 
 function Board(props) {
 
   return (
     <div>
       <div className="playerA">
-        {props.playerA.name}
+        {props.playerA?.name}
       </div>
 
       <div className="board">
@@ -42,7 +43,7 @@ function Board(props) {
       </div>
 
       <div className="playerB">
-        {props.playerB.name}
+        {props.playerB?.name}
       </div>
     </div>
   )
